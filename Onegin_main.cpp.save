@@ -2,10 +2,22 @@
 
 int main()
 {
-    char text = "";
+    int c;
     FILE * fp = fopen("ONEGIN.txt", "r");
-    if (fp != NULL)
+    if (fp)
     {
-        fgets(text, 100, "ONEGIN");
+        int num_symb = 0;
+        while ((c = getc(fp)) != EOF)
+        {
+            if (c == '\n')
+            {
+                printf("%d\n",num_symb);
+                num_symb = -1;
+                
+            }
+            num_symb++;
+        }
+        printf("%d\n",num_symb);
+
     }
 }
