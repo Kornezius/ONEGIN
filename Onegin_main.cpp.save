@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+int main()
+{
+    char text = "";
+    FILE * fp = fopen("ONEGIN.txt", "r");
+    if (fp != NULL)
+    {
+        fgets(text, 100, "ONEGIN");
+    }
+}
