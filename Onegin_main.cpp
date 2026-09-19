@@ -1,23 +1,26 @@
 #include <stdio.h>
+#include <sys/stat.h>
 
 int main()
 {
-    int c;
+    struct stat statistic;
+    long size_f;
+    int c = 0, k = 1;
+
+
     FILE * fp = fopen("ONEGIN.txt", "r");
-    if (fp)
+    stat("ONEGIN.txt", &statistic);
+    size_f = statistic.st_size;
+
+    printf("%d",size_f);
+    char buffer[size_f] = {};
+    fread(buffer, sizeof buffer[0], size_f, fp);
+
+    for (int i = 0; i < 90; i++)
     {
-        int num_symb = 0;
-        while ((c = getc(fp)) != EOF)
+        if ((buffer[i]) == '\n')
         {
-            if (c == '\n')
-            {
-                printf("%d\n",num_symb);
-                num_symb = -1;
-
-            }
-            num_symb++;
+            k++;
         }
-        printf("%d\n",num_symb);
-
     }
 }
